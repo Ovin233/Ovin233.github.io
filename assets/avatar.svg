@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 280">
+<rect width="280" height="280" rx="56" fill="#1395aa"/>
+<path d="M0 42 Q70 20 140 44 T280 42 L280 0 L0 0 Z" fill="#0f8496" opacity="0.7"/>
+<path d="M0 250 Q60 230 130 250 T280 252 L280 280 L0 280 Z" fill="#27b3c7" opacity="0.9"/>
+<path d="M84 88 A42 42 0 0 1 136 124 L95 127 Z" fill="#f6c12f"/>
+<path d="M90 94 A34 34 0 0 1 129 120 L98 122 Z" fill="#ffe08c"/>
+<line x1="95" y1="127" x2="110" y2="103" stroke="#fff4be" stroke-width="2"/>
+<path d="M56 192 C48 152 74 128 106 130 C136 132 154 162 149 193 C144 224 124 239 92 235 C70 232 60 218 56 192 Z" fill="#3e3e3e"/>
+<ellipse cx="101" cy="187" rx="38.0" ry="30.0" fill="none" stroke="#7d7d7d" stroke-opacity="0.55" stroke-width="2"/>
+<ellipse cx="101" cy="187" rx="35.0" ry="27.0" fill="none" stroke="#7d7d7d" stroke-opacity="0.55" stroke-width="2"/>
+<ellipse cx="101" cy="187" rx="32.0" ry="24.0" fill="none" stroke="#7d7d7d" stroke-opacity="0.55" stroke-width="2"/>
+<ellipse cx="101" cy="187" rx="29.0" ry="21.0" fill="none" stroke="#7d7d7d" stroke-opacity="0.55" stroke-width="2"/>
+<ellipse cx="101" cy="187" rx="26.0" ry="18.0" fill="none" stroke="#7d7d7d" stroke-opacity="0.55" stroke-width="2"/>
+<ellipse cx="101" cy="187" rx="23.0" ry="15.0" fill="none" stroke="#7d7d7d" stroke-opacity="0.55" stroke-width="2"/>
+<ellipse cx="182" cy="148" rx="57" ry="60" fill="#ebd99f"/>
+<ellipse cx="182" cy="148" rx="45" ry="50" fill="#f8eecf"/>
+<path d="M145 125 C160 95 204 95 219 124 C210 140 205 157 204 177 C196 191 169 192 159 178 C157 156 152 141 145 125 Z" fill="#d7b881"/>
+<path d="M163 129 C174 120 192 121 201 129 C194 143 191 157 191 172 C181 182 169 179 163 168 C165 149 166 139 163 129 Z" fill="#f4efe2"/>
+<path d="M223 150 L248 118 L258 126 L239 160 Z" fill="#d8dfe8"/>
+<rect x="216" y="152" width="39" height="86" rx="12" fill="#e74a2f"/>
+<circle cx="234" cy="170" r="2.8" fill="#ffd2a0"/>
+<circle cx="234" cy="192" r="2.8" fill="#ffd2a0"/>
+<circle cx="234" cy="214" r="2.8" fill="#ffd2a0"/>
+<circle cx="70" cy="114" r="4" fill="#a4e4ee" opacity="0.8"/>
+<circle cx="246" cy="108" r="3.5" fill="#a4e4ee" opacity="0.8"/>
+<circle cx="247" cy="200" r="3" fill="#a4e4ee" opacity="0.8"/>
+<circle cx="80" cy="238" r="3.5" fill="#a4e4ee" opacity="0.8"/>
+<circle cx="212" cy="244" r="3" fill="#a4e4ee" opacity="0.8"/>
+</svg>
