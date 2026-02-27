@@ -4,82 +4,342 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ovin Huang | Academic Profile</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary-color: #2774AE; /* UCLA Blue */ }
-        body { line-height: 1.7; }
-        .sidebar { margin-bottom: 40px; }
-        .highlight { color: var(--primary-color); font-weight: bold; }
-        .tag { background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.9em; margin-right: 5px; display: inline-block; margin-bottom: 5px; }
-        h2 { border-bottom: 2px solid var(--primary-color); padding-bottom: 5px; margin-top: 40px; }
+        :root {
+            --navy-950: #041227;
+            --navy-900: #081d3c;
+            --navy-700: #10356a;
+            --sky-400: #5fb4ff;
+            --sky-300: #88d1ff;
+            --sky-200: #b8e8ff;
+            --ink-050: #edf8ff;
+            --card-bg: rgba(7, 24, 52, 0.72);
+            --card-border: rgba(122, 201, 255, 0.32);
+            --tag-bg: rgba(125, 214, 255, 0.16);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            min-height: 100%;
+        }
+
+        body {
+            font-family: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+            color: var(--ink-050);
+            line-height: 1.75;
+            background:
+                linear-gradient(120deg, rgba(5, 23, 53, 0.95) 8%, rgba(6, 37, 79, 0.82) 46%, rgba(18, 88, 140, 0.75) 100%),
+                url("assets/bg-dharma.png") center center / cover no-repeat fixed;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: -15vmax;
+            background:
+                radial-gradient(circle at 20% 25%, rgba(151, 225, 255, 0.14), transparent 32%),
+                radial-gradient(circle at 82% 18%, rgba(103, 187, 255, 0.18), transparent 28%),
+                radial-gradient(circle at 72% 76%, rgba(74, 144, 235, 0.14), transparent 35%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .page {
+            width: min(1000px, calc(100% - 2.5rem));
+            margin: 2.6rem auto 4rem;
+        }
+
+        .hero,
+        section,
+        footer {
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 55px rgba(3, 13, 28, 0.38);
+            animation: rise-in 720ms ease both;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(160px, 230px) 1fr;
+            gap: 2rem;
+            padding: 2rem;
+            align-items: center;
+        }
+
+        .avatar-wrap {
+            position: relative;
+            width: min(220px, 100%);
+            margin: 0 auto;
+        }
+
+        .avatar-wrap::before {
+            content: "";
+            position: absolute;
+            inset: -12px;
+            border-radius: 50%;
+            background: conic-gradient(from 10deg, rgba(136, 209, 255, 0.9), rgba(64, 118, 206, 0.26), rgba(108, 232, 255, 0.82), rgba(136, 209, 255, 0.9));
+            filter: blur(0.3px);
+            z-index: -1;
+            animation: halo-spin 14s linear infinite;
+        }
+
+        .avatar {
+            display: block;
+            width: 100%;
+            border-radius: 50%;
+            border: 4px solid rgba(186, 236, 255, 0.7);
+            box-shadow: 0 0 0 8px rgba(100, 190, 240, 0.18), 0 18px 30px rgba(0, 0, 0, 0.35);
+            object-fit: cover;
+            aspect-ratio: 1;
+        }
+
+        h1,
+        h2 {
+            font-family: "Cormorant Garamond", Georgia, serif;
+            letter-spacing: 0.01em;
+            margin: 0;
+            color: var(--sky-200);
+        }
+
+        h1 {
+            font-size: clamp(2.3rem, 4.6vw, 3.35rem);
+            line-height: 1.08;
+            margin-bottom: 0.5rem;
+        }
+
+        .intro {
+            margin: 0;
+            font-size: 1.02rem;
+            color: #d3f0ff;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 0.9rem;
+            padding: 0.28rem 0.78rem;
+            border-radius: 999px;
+            border: 1px solid rgba(155, 229, 255, 0.48);
+            background: rgba(122, 212, 255, 0.12);
+            color: var(--sky-200);
+            font-size: 0.92rem;
+            letter-spacing: 0.01em;
+        }
+
+        .links {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .links a {
+            color: #d8f2ff;
+            text-decoration: none;
+            border: 1px solid rgba(124, 207, 255, 0.45);
+            border-radius: 999px;
+            padding: 0.34rem 0.78rem;
+            transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+            background: rgba(94, 175, 255, 0.12);
+        }
+
+        .links a:hover {
+            color: #07254f;
+            background: rgba(173, 232, 255, 0.96);
+            transform: translateY(-2px);
+        }
+
+        main {
+            margin-top: 1.35rem;
+            display: grid;
+            gap: 1.1rem;
+        }
+
+        section {
+            padding: 1.45rem 1.6rem;
+        }
+
+        h2 {
+            font-size: 2.02rem;
+            margin-bottom: 0.68rem;
+            border-bottom: 1px solid rgba(152, 220, 255, 0.35);
+            padding-bottom: 0.35rem;
+        }
+
+        p {
+            margin: 0;
+            color: #dff4ff;
+        }
+
+        .highlight {
+            color: var(--sky-300);
+            font-weight: 700;
+        }
+
+        .edu-list,
+        .skills-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .edu-list li,
+        .skills-list li {
+            padding: 0.72rem 0.95rem;
+            border-left: 3px solid rgba(134, 218, 255, 0.65);
+            background: rgba(106, 181, 232, 0.11);
+            border-radius: 0 12px 12px 0;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.8rem;
+        }
+
+        .tag {
+            border: 1px solid rgba(163, 229, 255, 0.5);
+            background: var(--tag-bg);
+            color: #d7f2ff;
+            border-radius: 999px;
+            padding: 0.22rem 0.72rem;
+            font-size: 0.9rem;
+            transition: background 0.18s ease;
+        }
+
+        .tag:hover {
+            background: rgba(149, 223, 255, 0.32);
+        }
+
+        footer {
+            margin-top: 1.3rem;
+            padding: 0.9rem 1.2rem;
+            text-align: center;
+            font-size: 0.83rem;
+            color: #cce8ff;
+        }
+
+        @keyframes rise-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes halo-spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 760px) {
+            .page {
+                width: min(1000px, calc(100% - 1.3rem));
+                margin-top: 1.2rem;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+                padding: 1.3rem;
+            }
+
+            section {
+                padding: 1.1rem 1rem;
+            }
+
+            h2 {
+                font-size: 1.62rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="page">
+        <header class="hero">
+            <div class="avatar-wrap">
+                <img class="avatar" src="assets/avatar.png" alt="Ovin Huang avatar" />
+            </div>
+            <div>
+                <h1>Ovin Huang</h1>
+                <p class="intro">
+                    Senior at <strong>UCLA</strong> majoring in Mathematics of Computation.<br>
+                    <span class="highlight">Incoming PhD Student @ UC Davis</span>
+                </p>
+                <span class="pill">Computational Imaging | Optimization | Machine Learning</span>
+                <div class="links">
+                    <a href="https://github.com/Ovin233">GitHub</a>
+                </div>
+            </div>
+        </header>
 
-    <header>
-        <h1>Ovin Huang</h1>
-        <p>
-            Incoming Graduate Student at <strong>UC Davis (Fall 2026)</strong><br>
-            Current Senior at <strong>UCLA</strong>
-        </p>
-        <div>
-            <a href="mailto:your_email@ucla.edu">Email</a> / 
-            <a href="https://github.com/Ovin233">GitHub</a> / 
-            <a href="#">LinkedIn</a>
-        </div>
-    </header>
+        <main>
+            <section id="biography">
+                <h2>Biography</h2>
+                <p>
+                    I study the mathematical foundations behind imaging and learning systems, with a focus on how optimization and numerical methods can be used to solve inverse problems in real-world settings. My academic path has spanned <span class="highlight">UCSB</span> and <span class="highlight">UCLA</span>, and I am preparing to continue this work as an <span class="highlight">Incoming PhD Student @ UC Davis</span>.
+                </p>
+            </section>
 
-    <section id="biography">
-        <h2>Biography</h2>
-        <p>
-            I am a senior student at <span class="highlight">UCLA</span> majoring in <strong>Mathematics of Computation</strong>. 
-            My academic journey started at <strong>UCSB</strong> where I studied Statistics & Data Science. 
-            I am passionate about the intersection of mathematics and computer science, specifically in solving complex real-world problems through computational methods.
-        </p>
-    </section>
+            <section id="education">
+                <h2>Education</h2>
+                <ul class="edu-list">
+                    <li>
+                        <strong>University of California, Los Angeles (UCLA)</strong><br>
+                        B.S. in Mathematics of Computation | 2024 - 2026
+                    </li>
+                    <li>
+                        <strong>University of California, Santa Barbara (UCSB)</strong><br>
+                        Statistics &amp; Data Science | 2022 - 2024
+                    </li>
+                </ul>
+            </section>
 
-    <section id="education">
-        <h2>Education</h2>
-        <ul>
-            <li>
-                <strong>University of California, Davis</strong><br>
-                Ph.D. in Applied Mathematics | <span class="highlight">Incoming Fall 2026</span>
-            </li>
-            <li>
-                <strong>University of California, Los Angeles (UCLA)</strong><br>
-                B.S. in Mathematics of Computation | 2024 - 2026
-            </li>
-            <li>
-                <strong>University of California, Santa Barbara (UCSB)</strong><br>
-                Statistics & Data Science | 2022 - 2024
-            </li>
-        </ul>
-    </section>
+            <section id="research">
+                <h2>Research Interests</h2>
+                <p>My research focuses on the mathematical foundations of imaging and machine learning:</p>
+                <div class="tag-row">
+                    <span class="tag">Optimization</span>
+                    <span class="tag">Computational Imaging</span>
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">Inverse Problems</span>
+                </div>
+            </section>
 
-    <section id="research">
-        <h2>Research Interests</h2>
-        <p>My research focuses on the mathematical foundations of imaging and machine learning:</p>
-        <div>
-            <span class="tag">Optimization</span>
-            <span class="tag">Computational Imaging</span>
-            <span class="tag">Machine Learning</span>
-            <span class="tag">Inverse Problems</span>
-        </div>
-    </section>
+            <section id="skills">
+                <h2>Skills</h2>
+                <ul class="skills-list">
+                    <li><strong>Programming:</strong> Python (PyTorch, NumPy), C++, MATLAB, R</li>
+                    <li><strong>Math:</strong> Numerical Analysis, Convex Optimization, Linear Algebra</li>
+                </ul>
+            </section>
+        </main>
 
-    <section id="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li><strong>Programming:</strong> Python (PyTorch, NumPy), C++, MATLAB, R</li>
-            <li><strong>Math:</strong> Numerical Analysis, Convex Optimization, Linear Algebra</li>
-        </ul>
-    </section>
-
-    <footer>
-        <p style="text-align: center; margin-top: 50px; font-size: 0.8em;">
+        <footer>
             © 2026 Ovin Huang | Last updated: Feb 2026
-        </p>
-    </footer>
-
+        </footer>
+    </div>
 </body>
 </html>
