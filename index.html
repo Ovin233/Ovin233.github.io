@@ -1,85 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ovin Huang | Academic Profile</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
     <style>
-        :root { --primary-color: #2774AE; /* UCLA Blue */ }
-        body { line-height: 1.7; }
-        .sidebar { margin-bottom: 40px; }
-        .highlight { color: var(--primary-color); font-weight: bold; }
-        .tag { background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.9em; margin-right: 5px; display: inline-block; margin-bottom: 5px; }
-        h2 { border-bottom: 2px solid var(--primary-color); padding-bottom: 5px; margin-top: 40px; }
+        :root {
+            --bg-deep: #03142e;
+            --panel: rgba(5, 26, 58, 0.7);
+            --panel-border: rgba(155, 226, 255, 0.25);
+            --text-main: #e7f5ff;
+            --text-soft: #b5d8f3;
+            --accent: #83d6ff;
+            --accent-strong: #2a9fd6;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+            color: var(--text-main);
+            line-height: 1.7;
+            background:
+                radial-gradient(circle at 18% 15%, rgba(122, 207, 255, 0.2), transparent 34%),
+                radial-gradient(circle at 82% 84%, rgba(48, 161, 230, 0.18), transparent 40%),
+                var(--bg-deep);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: url("assets/bg-mandala.svg") center / cover no-repeat;
+            opacity: 0.55;
+            z-index: -2;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(120deg, rgba(3, 20, 46, 0.9), rgba(8, 39, 78, 0.6));
+            z-index: -1;
+        }
+
+        .container {
+            width: min(1000px, 92vw);
+            margin: 36px auto 48px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 24px;
+            align-items: center;
+            background: var(--panel);
+            border: 1px solid var(--panel-border);
+            border-radius: 20px;
+            padding: 22px 26px;
+            backdrop-filter: blur(7px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(156, 227, 255, 0.6);
+            box-shadow: 0 8px 24px rgba(20, 87, 145, 0.6);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(1.9rem, 3.3vw, 2.8rem);
+            letter-spacing: 0.02em;
+        }
+
+        .subtitle {
+            margin: 4px 0 0;
+            color: var(--text-soft);
+            font-size: 1rem;
+        }
+
+        .intro-line {
+            margin: 10px 0 0;
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 1.05rem;
+        }
+
+        .links a {
+            color: #cbecff;
+            text-decoration: none;
+            border-bottom: 1px dashed rgba(203, 236, 255, 0.55);
+            margin-right: 12px;
+        }
+
+        .links a:hover { color: #ffffff; }
+
+        .grid {
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--panel-border);
+            border-radius: 16px;
+            padding: 18px 20px;
+            backdrop-filter: blur(6px);
+        }
+
+        h2 {
+            margin: 0 0 10px;
+            font-size: 1.15rem;
+            color: #e2f5ff;
+            border-left: 4px solid var(--accent-strong);
+            padding-left: 10px;
+        }
+
+        p, li { color: #d8edff; }
+        ul { margin: 0; padding-left: 18px; }
+
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag {
+            background: rgba(131, 214, 255, 0.15);
+            color: #d9f2ff;
+            border: 1px solid rgba(131, 214, 255, 0.4);
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 0.85rem;
+        }
+
+        footer {
+            text-align: center;
+            color: #9dc7e8;
+            margin-top: 26px;
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 640px) {
+            .hero { grid-template-columns: 1fr; text-align: center; }
+            .avatar { margin: 0 auto; }
+        }
     </style>
 </head>
 <body>
+    <main class="container">
+        <header class="hero">
+            <img class="avatar" src="assets/avatar.svg" alt="Profile avatar" />
+            <div>
+                <h1>Ovin Huang</h1>
+                <p class="subtitle">Mathematics of Computation · Computational Imaging · Machine Learning</p>
+                <p class="intro-line">Incoming PhD Student @ UC Davis</p>
+                <div class="links">
+                    <a href="mailto:your_email@ucla.edu">Email</a>
+                    <a href="https://github.com/Ovin233">GitHub</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+        </header>
 
-    <header>
-        <h1>Ovin Huang</h1>
-        <p>
-            Incoming Graduate Student at <strong>UC Davis (Fall 2026)</strong><br>
-            Current Senior at <strong>UCLA</strong>
-        </p>
-        <div>
-            <a href="mailto:your_email@ucla.edu">Email</a> / 
-            <a href="https://github.com/Ovin233">GitHub</a> / 
-            <a href="#">LinkedIn</a>
-        </div>
-    </header>
+        <section class="grid">
+            <article class="card" id="biography">
+                <h2>Biography</h2>
+                <p>
+                    I am a senior at UCLA majoring in <strong>Mathematics of Computation</strong>.
+                    My academic journey began at UCSB in Statistics &amp; Data Science, and now centers
+                    on turning mathematical ideas into practical computational methods.
+                </p>
+            </article>
 
-    <section id="biography">
-        <h2>Biography</h2>
-        <p>
-            I am a senior student at <span class="highlight">UCLA</span> majoring in <strong>Mathematics of Computation</strong>. 
-            My academic journey started at <strong>UCSB</strong> where I studied Statistics & Data Science. 
-            I am passionate about the intersection of mathematics and computer science, specifically in solving complex real-world problems through computational methods.
-        </p>
-    </section>
+            <article class="card" id="education">
+                <h2>Education</h2>
+                <ul>
+                    <li>
+                        <strong>University of California, Los Angeles (UCLA)</strong><br />
+                        B.S. in Mathematics of Computation | 2024 - 2026
+                    </li>
+                    <li>
+                        <strong>University of California, Santa Barbara (UCSB)</strong><br />
+                        Statistics &amp; Data Science | 2022 - 2024
+                    </li>
+                </ul>
+            </article>
 
-    <section id="education">
-        <h2>Education</h2>
-        <ul>
-            <li>
-                <strong>University of California, Davis</strong><br>
-                Ph.D. in Applied Mathematics | <span class="highlight">Incoming Fall 2026</span>
-            </li>
-            <li>
-                <strong>University of California, Los Angeles (UCLA)</strong><br>
-                B.S. in Mathematics of Computation | 2024 - 2026
-            </li>
-            <li>
-                <strong>University of California, Santa Barbara (UCSB)</strong><br>
-                Statistics & Data Science | 2022 - 2024
-            </li>
-        </ul>
-    </section>
+            <article class="card" id="research">
+                <h2>Research Interests</h2>
+                <div class="tags">
+                    <span class="tag">Optimization</span>
+                    <span class="tag">Computational Imaging</span>
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">Inverse Problems</span>
+                </div>
+            </article>
 
-    <section id="research">
-        <h2>Research Interests</h2>
-        <p>My research focuses on the mathematical foundations of imaging and machine learning:</p>
-        <div>
-            <span class="tag">Optimization</span>
-            <span class="tag">Computational Imaging</span>
-            <span class="tag">Machine Learning</span>
-            <span class="tag">Inverse Problems</span>
-        </div>
-    </section>
+            <article class="card" id="skills">
+                <h2>Skills</h2>
+                <ul>
+                    <li><strong>Programming:</strong> Python (PyTorch, NumPy), C++, MATLAB, R</li>
+                    <li><strong>Math:</strong> Numerical Analysis, Convex Optimization, Linear Algebra</li>
+                </ul>
+            </article>
+        </section>
 
-    <section id="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li><strong>Programming:</strong> Python (PyTorch, NumPy), C++, MATLAB, R</li>
-            <li><strong>Math:</strong> Numerical Analysis, Convex Optimization, Linear Algebra</li>
-        </ul>
-    </section>
-
-    <footer>
-        <p style="text-align: center; margin-top: 50px; font-size: 0.8em;">
-            © 2026 Ovin Huang | Last updated: Feb 2026
-        </p>
-    </footer>
-
+        <footer>© 2026 Ovin Huang | Last updated: Feb 2026</footer>
+    </main>
 </body>
 </html>
