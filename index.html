@@ -1,76 +1,496 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shengyang Huang | Website Temporarily Private</title>
-    <meta name="description" content="Shengyang Huang's website is temporarily private and will be published at a later date.">
-    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, max-snippet:0, max-video-preview:0">
-    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex, max-snippet:0, max-video-preview:0">
-    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <link rel="canonical" href="https://ovin233.github.io/">
-    <style>
-        :root {
-            --bg1: #041227;
-            --bg2: #0b2f5f;
-            --card: rgba(5, 20, 45, 0.78);
-            --text: #eaf6ff;
-            --muted: #b8d8ee;
-            --border: rgba(150, 210, 255, 0.34);
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shengyang Huang — Applied Mathematics, UC Davis</title>
+<meta name="description" content="Shengyang Huang is a Ph.D. student in the Graduate Group in Applied Mathematics (GGAM) at UC Davis.">
+<link rel="canonical" href="https://ovin233.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Shengyang Huang — Applied Mathematics, UC Davis">
+<meta property="og:description" content="Ph.D. student in the Graduate Group in Applied Mathematics (GGAM) at UC Davis.">
+<meta property="og:url" content="https://ovin233.github.io/">
+<script>
+(function () {
+  var t = null;
+  try { t = localStorage.getItem('theme'); } catch (e) {}
+  if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.dataset.theme = t;
+  document.documentElement.classList.add('js');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf8f3;
+  --bg-soft: #f3efe6;
+  --card: #fffdf9;
+  --ink: #17202f;
+  --muted: #5d6676;
+  --faint: #8b93a1;
+  --rule: #e3ddd0;
+  --accent: #022851;      /* Aggie blue */
+  --gold: #b07d00;
+  --gold-soft: rgba(218, 170, 0, .16);
+  --flow-a: rgba(2, 40, 81, .55);
+  --flow-b: rgba(190, 140, 0, .75);
+  --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --wrap: 1040px;
+}
+[data-theme="dark"] {
+  --bg: #0b131f;
+  --bg-soft: #101a29;
+  --card: #111c2c;
+  --ink: #e9e6dd;
+  --muted: #a0a9b8;
+  --faint: #6f7a8c;
+  --rule: #1e2a3c;
+  --accent: #9cc3ff;
+  --gold: #ffc940;
+  --gold-soft: rgba(255, 201, 64, .14);
+  --flow-a: rgba(140, 185, 255, .55);
+  --flow-b: rgba(255, 201, 64, .8);
+}
 
-        * {
-            box-sizing: border-box;
-        }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 16.5px/1.72 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color .35s ease, color .35s ease;
+}
+::selection { background: var(--gold-soft); }
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 32px; }
 
-        html,
-        body {
-            margin: 0;
-            min-height: 100%;
-        }
+/* ---------- Top bar ---------- */
+.bar {
+  position: fixed; inset: 0 0 auto 0; z-index: 20;
+  backdrop-filter: saturate(160%) blur(14px);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s ease, background-color .35s ease;
+}
+.bar.scrolled { border-bottom-color: var(--rule); }
+.bar .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.mark {
+  font: 500 1.25rem/1 var(--serif); letter-spacing: .02em;
+  display: inline-flex; align-items: baseline; gap: 2px;
+}
+.mark i { font-style: normal; color: var(--gold); }
+.nav { display: flex; align-items: center; gap: 28px; }
+.nav a.link {
+  font-size: .82rem; font-weight: 500; letter-spacing: .04em; color: var(--muted);
+  position: relative; padding: 6px 0; transition: color .2s ease;
+}
+.nav a.link::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .3s ease;
+}
+.nav a.link:hover, .nav a.link.on { color: var(--ink); }
+.nav a.link.on::after, .nav a.link:hover::after { transform: scaleX(1); }
+.toggle {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid var(--rule); background: transparent; color: var(--ink);
+  display: grid; place-items: center; cursor: pointer;
+  transition: border-color .2s ease, transform .4s ease;
+}
+.toggle:hover { border-color: var(--gold); transform: rotate(20deg); }
+.toggle svg { width: 16px; height: 16px; }
+.toggle .moon { display: none; }
+[data-theme="dark"] .toggle .sun { display: none; }
+[data-theme="dark"] .toggle .moon { display: block; }
 
-        body {
-            font-family: "Avenir Next", "Segoe UI", sans-serif;
-            color: var(--text);
-            background:
-                radial-gradient(circle at 20% 20%, rgba(109, 182, 255, 0.25), transparent 35%),
-                linear-gradient(135deg, var(--bg1), var(--bg2));
-            display: grid;
-            place-items: center;
-            padding: 1.2rem;
-        }
+/* ---------- Hero ---------- */
+.hero { position: relative; min-height: min(92vh, 860px); display: flex; align-items: center; overflow: hidden; }
+#flow {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  -webkit-mask-image: radial-gradient(ellipse 62% 78% at 74% 48%, #000 18%, transparent 74%);
+          mask-image: radial-gradient(ellipse 62% 78% at 74% 48%, #000 18%, transparent 74%);
+  pointer-events: none;
+}
+.hero .wrap { position: relative; width: 100%; padding-top: 110px; padding-bottom: 90px; }
+.eyebrow {
+  font: 500 .76rem/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--gold);
+  display: flex; align-items: center; gap: 14px; margin: 0 0 28px;
+}
+.eyebrow::before { content: ""; width: 36px; height: 1px; background: var(--gold); }
+h1 {
+  font: 400 clamp(3rem, 8.2vw, 5.9rem)/.98 var(--serif);
+  letter-spacing: -.028em; margin: 0 0 30px; font-optical-sizing: auto;
+}
+h1 em { font-weight: 300; color: var(--accent); }
+.lede {
+  font: 400 clamp(1.15rem, 2vw, 1.42rem)/1.55 var(--serif);
+  color: var(--muted); max-width: 33em; margin: 0 0 40px;
+}
+.lede strong { font-weight: 500; color: var(--ink); }
+.links { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: .84rem; font-weight: 500; letter-spacing: .01em;
+  padding: 9px 16px; border: 1px solid var(--rule); border-radius: 999px;
+  background: color-mix(in srgb, var(--card) 70%, transparent);
+  transition: border-color .2s ease, transform .2s ease, background-color .2s ease;
+}
+.chip svg { width: 12px; height: 12px; opacity: .55; transition: transform .2s ease, opacity .2s ease; }
+.chip:hover { border-color: var(--gold); transform: translateY(-1px); }
+.chip:hover svg { transform: translate(2px, -2px); opacity: 1; }
+.chip.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.chip.primary:hover { border-color: var(--gold); }
+.caption {
+  position: absolute; right: 32px; bottom: 28px;
+  font: 400 .7rem/1.5 var(--mono); color: var(--faint); text-align: right; letter-spacing: .01em;
+}
+.caption b { font-weight: 500; color: var(--muted); }
 
-        .card {
-            width: min(680px, 100%);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            background: var(--card);
-            backdrop-filter: blur(6px);
-            padding: 1.8rem;
-            box-shadow: 0 18px 48px rgba(0, 0, 0, 0.38);
-        }
+/* ---------- Sections ---------- */
+.sec { border-top: 1px solid var(--rule); padding: 84px 0; }
+.sec .wrap { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 0 56px; }
+.label { margin: 6px 0 0; font: 500 .76rem/1.4 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); position: sticky; top: 96px; align-self: start; }
+.label span { display: block; font: 400 .72rem/1 var(--mono); letter-spacing: .05em; color: var(--gold); margin-bottom: 10px; }
+.body > :first-child { margin-top: 0; }
+.body p { margin: 0 0 1.15em; max-width: 40em; }
+.body a.inline { border-bottom: 1px solid var(--gold); transition: background-color .2s ease; }
+.body a.inline:hover { background: var(--gold-soft); }
+.big { font: 400 1.5rem/1.5 var(--serif); letter-spacing: -.008em; max-width: 30em !important; margin-bottom: 1em !important; }
 
-        h1 {
-            margin: 0 0 0.7rem;
-            font-size: clamp(1.7rem, 5vw, 2.3rem);
-            letter-spacing: 0.01em;
-        }
+/* Lists: education, teaching */
+.rows { list-style: none; margin: 0; padding: 0; }
+.row { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 0 24px; padding: 24px 0; border-bottom: 1px solid var(--rule); }
+.row:first-child { padding-top: 4px; }
+.row:last-child { border-bottom: 0; padding-bottom: 0; }
+.when { font: 400 .78rem/1.9 var(--mono); color: var(--faint); letter-spacing: .01em; white-space: nowrap; }
+.row h3 { font: 500 1.26rem/1.32 var(--serif); margin: 0 0 6px; letter-spacing: -.005em; }
+.row p { margin: 0; font-size: .93rem; line-height: 1.6; color: var(--muted); max-width: 44em; }
+.row p + p { margin-top: 3px; }
+.row p b { font-weight: 600; color: var(--ink); }
+.row .where { color: var(--ink); font-weight: 500; }
+.crest {
+  display: inline-block; font: 500 .66rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase;
+  padding: 5px 8px; border-radius: 3px; background: var(--gold-soft); color: var(--gold); margin-bottom: 10px;
+}
 
-        p {
-            margin: 0;
-            color: var(--muted);
-            line-height: 1.7;
-        }
-    </style>
+/* Contact */
+.contact { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 48px; margin-top: 34px; }
+.contact dt { font: 500 .7rem/1 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--faint); margin-bottom: 10px; }
+.contact dd { margin: 0; font: 400 1.12rem/1.5 var(--serif); }
+.contact dd a { border-bottom: 1px solid var(--gold); }
+.contact dd a:hover { background: var(--gold-soft); }
+
+footer { border-top: 1px solid var(--rule); padding: 30px 0 46px; font-size: .8rem; color: var(--faint); }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+/* Reveal */
+.js .rv { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1); }
+.js .rv.in { opacity: 1; transform: none; }
+
+@media (max-width: 860px) {
+  .sec { padding: 60px 0; }
+  .sec .wrap { grid-template-columns: 1fr; gap: 26px; }
+  .label { position: static; display: flex; align-items: baseline; gap: 12px; }
+  .label span { margin: 0; }
+  .caption { display: none; }
+  #flow { opacity: .5; -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 45%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0%, #000 45%, transparent 100%); }
+  .eyebrow { letter-spacing: .16em; line-height: 1.5; }
+}
+@media (max-width: 640px) {
+  .wrap { padding: 0 22px; }
+  .nav a.link { display: none; }
+  .hero { min-height: 86vh; }
+  .row { grid-template-columns: 1fr; gap: 4px; }
+  .contact { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .rv { opacity: 1; transform: none; transition: none; }
+}
+@media print {
+  .bar, #flow, .caption { display: none; }
+  .hero { min-height: 0; }
+  .js .rv { opacity: 1; transform: none; }
+}
+</style>
 </head>
 <body>
-    <main class="card">
-        <h1>Shengyang Huang</h1>
-        <p>
-            This website is intentionally hidden for now and will be published later.
+
+<header class="bar" id="bar">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="Home">SH<i>.</i></a>
+    <nav class="nav" aria-label="Sections">
+      <a class="link" href="#about">About</a>
+      <a class="link" href="#research">Research</a>
+      <a class="link" href="#education">Education</a>
+      <a class="link" href="#teaching">Teaching</a>
+      <a class="link" href="#contact">Contact</a>
+      <button class="toggle" id="toggle" type="button" aria-label="Switch color theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.500 10.500z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <canvas id="flow" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <p class="eyebrow">Ph.D. Student · Applied Mathematics</p>
+      <h1>Shengyang <em>Huang</em></h1>
+      <p class="lede">
+        I am a first-year Ph.D. student in the <strong>Graduate Group in Applied Mathematics</strong> at
+        <strong>UC Davis</strong>, interested in the <strong>mathematics of data science</strong>.
+      </p>
+      <div class="links">
+        <a class="chip primary" href="https://github.com/Ovin233" rel="me noopener">GitHub
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10 10 2M4 2h6v6"/></svg></a>
+        <a class="chip" href="https://ggam.ucdavis.edu/" rel="noopener">GGAM at UC Davis
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10 10 2M4 2h6v6"/></svg></a>
+      </div>
+    </div>
+    <p class="caption"><b>ψ(x, y, t) = A sin(π f(x, t)) sin(π y)</b><br>double-gyre flow, integrated live</p>
+  </section>
+
+  <section class="sec" id="about">
+    <div class="wrap">
+      <h2 class="label"><span>01</span>About</h2>
+      <div class="body rv">
+        <p class="big">
+          I am a Ph.D. student in the Graduate Group in Applied Mathematics (GGAM) at the
+          University of California, Davis, where I started in 2026.
         </p>
-    </main>
+        <p>
+          Before coming to Davis, I earned my B.S. in Mathematics of Computation at UCLA.
+        </p>
+        <p>
+          Outside of mathematics, I enjoy hiking and running.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="research">
+    <div class="wrap">
+      <h2 class="label"><span>02</span>Research</h2>
+      <div class="body rv">
+        <p class="big">
+          I am broadly interested in mathematics for data science: the mathematical ideas that
+          explain why methods for learning from data work, and that help us build better ones.
+        </p>
+        <p>
+          As a first-year student I am still exploring specific directions, and I am always happy
+          to hear about interesting problems, papers, and reading groups.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="education">
+    <div class="wrap">
+      <h2 class="label"><span>03</span>Education</h2>
+      <div class="body rv">
+        <ul class="rows">
+          <li class="row">
+            <div class="when">2026 — now</div>
+            <div>
+              <span class="crest">UC Davis</span>
+              <h3>Ph.D. in Applied Mathematics</h3>
+              <p><span class="where">University of California, Davis</span> · Graduate Group in Applied Mathematics (GGAM)</p>
+            </div>
+          </li>
+          <li class="row">
+            <div class="when">2026</div>
+            <div>
+              <span class="crest">UCLA</span>
+              <h3>B.S. in Mathematics of Computation</h3>
+              <p><span class="where">University of California, Los Angeles</span> · Department of Mathematics</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="teaching">
+    <div class="wrap">
+      <h2 class="label"><span>04</span>Teaching</h2>
+      <div class="body rv">
+        <ul class="rows">
+          <li class="row">
+            <div class="when">Fall 2026</div>
+            <div>
+              <h3>MAT 17A — Calculus for Biology and Medicine</h3>
+              <p>Teaching Assistant, UC Davis</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="contact">
+    <div class="wrap">
+      <h2 class="label"><span>05</span>Contact</h2>
+      <div class="body rv">
+        <p class="big">I am always glad to talk about mathematics, research, or grad school.</p>
+        <dl class="contact">
+          <div>
+            <dt>GitHub</dt>
+            <dd><a href="https://github.com/Ovin233" rel="me noopener">github.com/Ovin233</a></dd>
+          </div>
+          <div>
+            <dt>Mail</dt>
+            <dd>Department of Mathematics<br>One Shields Avenue, Davis, CA 95616</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Shengyang Huang</span>
+    <span>Last updated November 2026</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  /* Theme toggle */
+  document.getElementById('toggle').addEventListener('click', function () {
+    var next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    window.dispatchEvent(new Event('themechange'));
+  });
+
+  /* Top bar border once scrolled */
+  var bar = document.getElementById('bar');
+  function onScroll() { bar.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* Reveal on scroll + active nav link */
+  var links = {};
+  document.querySelectorAll('.nav a.link').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window) {
+    var rv = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); rv.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.rv').forEach(function (el) { rv.observe(el); });
+
+    var spy = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        Object.keys(links).forEach(function (k) { links[k].classList.toggle('on', k === e.target.id); });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('.sec').forEach(function (s) { spy.observe(s); });
+  } else {
+    document.querySelectorAll('.rv').forEach(function (el) { el.classList.add('in'); });
+  }
+
+  /* Hero: particles advected by the time-periodic double-gyre flow
+     psi = A sin(pi f(x,t)) sin(pi y),  f = eps sin(wt) x^2 + (1 - 2 eps sin(wt)) x,
+     on the domain [0,2] x [0,1]. */
+  var c = document.getElementById('flow');
+  var ctx = c.getContext('2d');
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var A = 0.1, EPS = 0.25, OM = 2 * Math.PI / 10, PI = Math.PI;
+  var W = 0, H = 0, tall = false, parts = [], t = 0, raf = 0, visible = true, last = 0, colA, colB;
+
+  function colors() {
+    var s = getComputedStyle(root);
+    colA = s.getPropertyValue('--flow-a').trim();
+    colB = s.getPropertyValue('--flow-b').trim();
+  }
+  function spawn(p) {
+    p = p || {};
+    p.x = Math.random() * 2; p.y = Math.random();
+    p.life = 80 + Math.random() * 260;
+    if (p.g === undefined) p.g = Math.random() < 0.16 ? 1 : 0;
+    return p;
+  }
+  function resize() {
+    var r = c.getBoundingClientRect();
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = r.width; H = r.height; tall = H > W;   /* portrait: lay the two gyres out vertically */
+    c.width = Math.round(W * dpr); c.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var n = Math.max(380, Math.min(1100, Math.round(W * H / 1100)));
+    parts = [];
+    for (var i = 0; i < n; i++) parts.push(spawn());
+    if (reduce) still();
+  }
+  function advect(dt, fade) {
+    if (fade) {
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.fillStyle = 'rgba(0,0,0,0.07)';
+      ctx.fillRect(0, 0, W, H);
+      ctx.globalCompositeOperation = 'source-over';
+    }
+    var s = Math.sin(OM * t), a = EPS * s, b = 1 - 2 * EPS * s;
+    for (var g = 0; g < 2; g++) {
+      ctx.beginPath();
+      for (var i = 0; i < parts.length; i++) {
+        var p = parts[i];
+        if (p.g !== g) continue;
+        var f = a * p.x * p.x + b * p.x, df = 2 * a * p.x + b;
+        var u = -PI * A * Math.sin(PI * f) * Math.cos(PI * p.y);
+        var v = PI * A * Math.cos(PI * f) * Math.sin(PI * p.y) * df;
+        var nx = p.x + u * dt, ny = p.y + v * dt;
+        if (tall) { ctx.moveTo(p.y * W, p.x * 0.5 * H); ctx.lineTo(ny * W, nx * 0.5 * H); }
+        else { ctx.moveTo(p.x * 0.5 * W, (1 - p.y) * H); ctx.lineTo(nx * 0.5 * W, (1 - ny) * H); }
+        p.x = nx; p.y = ny; p.life -= 1;
+        if (p.life < 0 || nx < 0 || nx > 2 || ny < 0 || ny > 1) spawn(p);
+      }
+      ctx.strokeStyle = g ? colB : colA;
+      ctx.lineWidth = g ? 1.1 : 0.8;
+      ctx.stroke();
+    }
+    t += dt;
+  }
+  function still() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.globalAlpha = 0.35;
+    for (var k = 0; k < 160; k++) advect(0.03, false);
+    ctx.globalAlpha = 1;
+  }
+  function frame(now) {
+    raf = 0;
+    if (!visible) return;
+    /* Cap at ~60 steps/s so trail length is the same on high-refresh displays. */
+    if (now - last < 15) { raf = requestAnimationFrame(frame); return; }
+    var dt = Math.min(0.05, (now - last) / 1000 || 0.016);
+    last = now;
+    advect(dt * 1.6, true);
+    raf = requestAnimationFrame(frame);
+  }
+  function start() { if (!raf && !reduce && visible) { last = performance.now(); raf = requestAnimationFrame(frame); } }
+
+  colors(); resize(); start();
+  var rz;
+  window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(function () { resize(); start(); }, 150); });
+  window.addEventListener('themechange', function () { colors(); ctx.clearRect(0, 0, W, H); if (reduce) still(); });
+  document.addEventListener('visibilitychange', function () { visible = !document.hidden; start(); });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { visible = es[0].isIntersecting && !document.hidden; start(); }).observe(c);
+  }
+})();
+</script>
 </body>
 </html>
